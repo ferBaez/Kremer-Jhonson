@@ -2,13 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
 import { cn } from '../lib/utils';
-
-const galleryImages = [
-  '1492691527719-9d1e07e534b4', '1534528741775-53994a69daeb', '1551316671-2d44cedd851a', '1501127122049-74d5c4142171',
-  '1485872299829-c673f5194813', '1515886657613-9f3515b0c78f', '1479936343636-73cdc5aae0c3', '1513360371669-4adf3dd7dff8',
-  '1519750157634-b6d12a0fc964', '1520350094754-f5ebd19fd3b8', '1496345875659-11f878697b0a', '1500917293891-ef795e70e1f6',
-  '1511406361295-0a1ff814c0ce', '1469334031218-e382a71b716b', '1490210214310-0fc1ccdc051f', '1456209503460-70f9ea771aeb'
-].map(id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`);
+import { galleryImages } from '../lib/images';
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -37,7 +31,7 @@ export function Gallery() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index % 4 * 0.1 }}
               className="aspect-[4/5] relative group cursor-pointer overflow-hidden bg-[#111]"
-              onClick={() => setSelectedImage(src.replace('w=800', 'w=1600'))}
+              onClick={() => setSelectedImage(src)}
             >
               <img
                 src={src}
@@ -48,6 +42,16 @@ export function Gallery() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
             </motion.div>
           ))}
+        </div>
+        <div className="mt-16 flex justify-center">
+          <a
+            href="https://drive.google.com/file/d/1GFB0HSvH2uZQvRlLkL7R5jHD7wW-fwGI/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-[#F27D26] hover:text-white transition-all shadow-xl text-center"
+          >
+            Portafolios
+          </a>
         </div>
       </div>
 

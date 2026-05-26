@@ -1,48 +1,28 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-
-const carouselImages = [
-  'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1920&q=80',
-  'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1920&q=80',
-  'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1920&q=80',
-];
+import { motion } from 'motion/react';
+import { carouselImages } from '../lib/images';
 
 export function HeroCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-[#0a0a0a]">
-      <AnimatePresence mode="popLayout">
-        <motion.img
-          key={currentIndex}
-          src={carouselImages[currentIndex]}
-          alt={`Slide ${currentIndex + 1}`}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-        />
-      </AnimatePresence>
-      <div className="absolute inset-0 bg-black/40" />
-      
-      {/* Decorative text or subtle elements could go here */}
-      <div className="absolute bottom-12 left-6 md:left-12 flex gap-4">
-        {carouselImages.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`h-1 transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-[#F27D26]' : 'w-4 bg-white/40 hover:bg-white/70'}`}
-          />
-        ))}
+    <header className="relative h-[100svh] flex flex-col justify-center items-center px-6 text-center overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-black flex overflow-hidden">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 45, repeat: Infinity }}
+          className="flex h-full min-w-max"
+        >
+          {[...carouselImages, ...carouselImages].map((src, idx) => (
+            <div key={idx} className="h-full flex-shrink-0 border-r border-white/10 overflow-hidden">
+              <img
+                src={src}
+                alt={`Slide ${idx + 1}`}
+                className="h-full w-auto opacity-60 grayscale-[10%] brightness-[0.85] transition-all duration-500 hover:opacity-95 hover:grayscale-0"
+              />
+            </div>
+          ))}
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black z-10 pointer-events-none" />
       </div>
-    </div>
+    </header>
   );
 }
+
