@@ -1,3 +1,6 @@
+// @ts-expect-error -- import.meta.env properties are defined by Vite's client types
+const baseUrl = import.meta.env.BASE_URL || '/';
+
 export const carouselImages = [
   'images/Captura de pantalla 2026-05-25 a la(s) 2_opt.jpeg',
   'images/Captura de pantalla 2026-05-25 a la(s) 3_opt.jpeg',
@@ -15,7 +18,7 @@ export const carouselImages = [
   'images/Copia de image_opt 9.jpeg',
   'images/Copia de image_opt.jpeg',
   'images/image_opt.jpeg'
-].map(path => `${(import.meta as any).env.BASE_URL || '/'}${path}`);
+].map(path => `${baseUrl}${path}`);
 
 export const galleryImages = [
   ...carouselImages
