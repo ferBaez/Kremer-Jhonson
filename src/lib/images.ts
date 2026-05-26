@@ -1,5 +1,3 @@
-const base = import.meta.env.BASE_URL || '/';
-
 export const carouselImages = [
   'images/Captura de pantalla 2026-05-25 a la(s) 2_opt.jpeg',
   'images/Captura de pantalla 2026-05-25 a la(s) 3_opt.jpeg',
@@ -17,7 +15,7 @@ export const carouselImages = [
   'images/Copia de image_opt 9.jpeg',
   'images/Copia de image_opt.jpeg',
   'images/image_opt.jpeg'
-].map(path => `${base}${path}`);
+];
 
 export const galleryImages = [
   ...carouselImages
