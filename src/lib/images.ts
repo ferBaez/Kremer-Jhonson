@@ -15,7 +15,7 @@ export const carouselImages = [
   'images/Copia de image_opt 9.jpeg',
   'images/Copia de image_opt.jpeg',
   'images/image_opt.jpeg'
-].map(path => `${import.meta.env.BASE_URL}${path}`);
+].map(path => `${(import.meta as any).env.BASE_URL || '/'}${path}`);
 
 export const galleryImages = [
   ...carouselImages
